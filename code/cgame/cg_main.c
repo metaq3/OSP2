@@ -76,7 +76,7 @@ int vmMain(int command, int arg0, int arg1, int arg2, int arg3, int arg4, int ar
 
 cg_t                cg;
 cgs_t               cgs;
-cgstat_t			cgstat;
+cgstat_t            cgstat;
 centity_t           cg_entities[MAX_GENTITIES];
 weaponInfo_t        cg_weapons[MAX_WEAPONS];
 itemInfo_t          cg_items[MAX_ITEMS];

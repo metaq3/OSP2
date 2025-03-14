@@ -1230,7 +1230,7 @@ typedef struct {
 
 //==============================================================================
 
-extern  cgstat_t		cgstat;
+extern  cgstat_t        cgstat;
 extern  cgs_t           cgs;
 extern  cg_t            cg;
 extern  centity_t       cg_entities[MAX_GENTITIES];

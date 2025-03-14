@@ -441,11 +441,18 @@ void CG_EvaluateStats(playerState_t* ps, playerState_t* ops)
 
 	hitsDelta = ps->persistant[PERS_HITS] - ops->persistant[PERS_HITS];
 
-	if (hitsDelta <= 0) {
+	if (hitsDelta <= 0)
+	{
 		return;
 	}
 
 	++cgstat.accuracy.hits;
+
+	// Sometimes attacks could be miscounted due to client inaccuracy.
+	if (cgstat.accuracy.attacks < cgstat.accuracy.hits)
+	{
+		cgstat.accuracy.attacks = cgstat.accuracy.hits;
+	}
 }
 
 /*
