@@ -2052,6 +2052,33 @@ static qboolean CG_IsDoubleShoot(weapon_t weap)
 
 /*
 ================
+CGStat_RegisterWeaponFire
+
+Counts weapon fire in player's stats
+================
+*/
+void CGStat_RegisterWeaponFire(int weapon)
+{
+	int currentTime;
+
+	currentTime = cg.time;
+
+	// Clear accuracy
+	if (cgstat.accuracy.lastWeapon != weapon
+		|| cgstat.accuracy.lastUpdate + 6000 < currentTime)
+	{
+		cgstat.accuracy.attacks = 0;
+		cgstat.accuracy.hits = 0;
+	}
+
+	cgstat.accuracy.lastWeapon = weapon;
+	cgstat.accuracy.lastUpdate = currentTime;
+
+	++cgstat.accuracy.attacks;
+}
+
+/*
+================
 CG_FireWeapon
 
 Caused by an EV_FIRE_WEAPON event
@@ -2085,6 +2112,13 @@ void CG_FireWeapon(centity_t* cent)
 	// mark the entity as muzzle flashing, so when it is added it will
 	// append the flash to the weapon model
 	cent->muzzleFlashTime = cg.time;
+
+	// check for enemy/player firing
+	if (cent->currentState.number == cg.snap->ps.clientNum)
+	{
+		// it's player, count his stats
+		CGStat_RegisterWeaponFire(ent->weapon);
+	}
 
 	// lightning gun only does this this on initial press
 	if (ent->weapon == WP_LIGHTNING)

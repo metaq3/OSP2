@@ -325,6 +325,7 @@ void CG_SHUDRoutine(void)
 		{
 			last->element.routine(last->element.context);
 		}
+
 		last = last->next;
 	}
 }

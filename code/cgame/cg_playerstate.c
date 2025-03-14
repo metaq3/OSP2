@@ -223,6 +223,9 @@ void CG_Respawn(void)
 
 	// select the weapon the server says we are using
 	cg.weaponSelect = cg.snap->ps.weapon;
+
+	cgstat.accuracy.attacks = 0;
+	cgstat.accuracy.hits = 0;
 }
 
 extern char* eventnames[];
@@ -423,6 +426,26 @@ void CG_HitSound(playerState_t* ps, playerState_t* ops)
 			CG_PlayHitSound(cgs.media.hitSound, ps, ops);
 		}
 	}
+}
+
+/*
+==================
+CG_EvaluateStats
+
+Updates different kinds of statistics placed in cgstat
+==================
+*/
+void CG_EvaluateStats(playerState_t* ps, playerState_t* ops)
+{
+	int		hitsDelta;
+
+	hitsDelta = ps->persistant[PERS_HITS] - ops->persistant[PERS_HITS];
+
+	if (hitsDelta <= 0) {
+		return;
+	}
+
+	++cgstat.accuracy.hits;
 }
 
 /*
@@ -643,6 +666,7 @@ void CG_TransitionPlayerState(playerState_t* ps, playerState_t* ops)
 	        && ps->persistant[PERS_TEAM] != TEAM_SPECTATOR)
 	{
 		CG_CheckLocalSounds(ps, ops);
+		CG_EvaluateStats(ps, ops);
 	}
 
 	// check for going low on ammo

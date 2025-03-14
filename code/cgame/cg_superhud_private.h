@@ -331,6 +331,10 @@ void* CG_SHUDElementFPSCreate(const superhudConfig_t* config);
 void CG_SHUDElementFPSRoutine(void* context);
 void CG_SHUDElementFPSDestroy(void* context);
 
+void* CG_SHUDElementAccCreate(const superhudConfig_t* config);
+void CG_SHUDElementAccRoutine(void* context);
+void CG_SHUDElementAccDestroy(void* context);
+
 void* CG_SHUDElementSBHCCreate(const superhudConfig_t* config);
 void CG_SHUDElementSBHCRoutine(void* context);
 void CG_SHUDElementSBHCDestroy(void* context);

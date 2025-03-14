@@ -1211,8 +1211,26 @@ typedef struct
 	cgs_osp_t osp;
 } cgs_t;
 
+// ---------------- CG_STAT Structures -------------------
+
+typedef struct {
+    int lastWeapon;
+    int lastUpdate;
+    int hits;
+    int attacks;
+} statAccuracy_t;
+
+// ---------------- ------------------ -------------------
+
+// Stats that are specific to player and clear every new match
+// holds cgstat_t.
+typedef struct {
+	statAccuracy_t accuracy;
+} cgstat_t;
+
 //==============================================================================
 
+extern  cgstat_t		cgstat;
 extern  cgs_t           cgs;
 extern  cg_t            cg;
 extern  centity_t       cg_entities[MAX_GENTITIES];
