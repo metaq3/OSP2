@@ -16,6 +16,7 @@ CG_SRC = \
  q_math q_shared cg_ospconfig cg_osputil cg_osphud cg_unlagged cg_playerscolors\
  cg_localevents cg_customloc common\
  cg_superhud cg_superhud_configparser cg_superhud_util cg_superhud_private\
+ cg_advanced_superhud cg_advanced_shud_flex \
  cg_superhud_element_fps \
  cg_superhud_element_sbhc cg_superhud_element_sbhi cg_superhud_element_sbhb \
  cg_superhud_element_sbac cg_superhud_element_sbai cg_superhud_element_sbab \
