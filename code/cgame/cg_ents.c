@@ -155,13 +155,20 @@ static void CG_EntityEffects(centity_t* cent)
 	if (cent->currentState.constantLight)
 	{
 		int     cl;
-		int     i, r, g, b;
+		float   i, r, g, b;
 
 		cl = cent->currentState.constantLight;
 		r = cl & 255;
 		g = (cl >> 8) & 255;
 		b = (cl >> 16) & 255;
 		i = ((cl >> 24) & 255) * 4;
+
+		// Normalize colors
+		r /= 255.f;
+		g /= 255.f;
+		b /= 255.f;
+		i /= 255.f;
+
 		trap_R_AddLightToScene(cent->lerpOrigin, i, r, g, b);
 	}
 
