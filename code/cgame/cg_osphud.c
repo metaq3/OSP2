@@ -2828,9 +2828,9 @@ static float CG_OSPDrawPowerups(float x, float y)
 			continue;
 		}
 		t = ps->powerups[ i ] - cg.time;
-		// ZOID--don't draw if the power up has unlimited time (999 seconds)
+		// ZOID--don't draw if the power up has unlimited time
 		// This is true of the CTF flags
-		if (t < 0 || t > 999000)
+		if (t < 0 || ps->powerups[ i ] == INT_MAX)
 		{
 			continue;
 		}
@@ -2963,7 +2963,7 @@ static float CG_OSPDrawWeaponBar_2_3(float pos_y)
 		if (powerupTime)
 		{
 			powerupTime -= cg.time;
-			if (powerupTime >= 0 && powerupTime <= 999000)
+			if (powerupTime >= 0 && cg.snap->ps.powerups[powerupNum] != INT_MAX)
 			{
 				++numberOfPowerups;
 			}
@@ -3405,7 +3405,7 @@ static float CG_OSPDrawPowerup67(float x, float y)
 		if (ps->powerups[i])
 		{
 			powerupTime = ps->powerups[i] - cg.time;
-			if ((powerupTime < 0) || (powerupTime > 999000))
+			if ((powerupTime < 0) || (ps->powerups[i] == INT_MAX))
 			{
 				continue;
 			}

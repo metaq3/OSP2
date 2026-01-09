@@ -141,9 +141,9 @@ static void CG_SHUDElementPwUpdateState(struct superhudPowerupsCache_t* pw)
 			continue;
 		}
 		t = ps->powerups[ i ] - cg.time;
-		// ZOID--don't draw if the power up has unlimited time (999 seconds)
+		// ZOID--don't draw if the power up has unlimited time
 		// This is true of the CTF flags
-		if (t < 0 || t > 999000)
+		if (t < 0 || ps->powerups[ i ] == INT_MAX)
 		{
 			continue;
 		}
